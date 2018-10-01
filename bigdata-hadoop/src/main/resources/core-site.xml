@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+    <!-- 指定Hadoop所使用的文件系统schema(URI),HDFS的 namenode 的地址 -->
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://hadoop01:9000</value>
+    </property>
+
+    <!-- 指定Hadoop运行时产生文件的存储目录 -->
+    <property>
+        <name>hadoop.tmp.dir</name>
+        <value>/home/hadoop/apps/hdpdata</value>
+    </property>
+</configuration>
