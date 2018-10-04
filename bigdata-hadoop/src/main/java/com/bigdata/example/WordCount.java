@@ -74,12 +74,14 @@ public class WordCount {
     public int run(String[] args) throws Exception {
         // 3.1 get configuration
         Configuration configuration = new Configuration();
-
+        // configuration.set("mapreduce.framework.name", "local");
+       // configuration.set("fs.defaultFS", "file:///");
         // 3.2 create job
         Job job = Job.getInstance(configuration, this.getClass().getSimpleName());
 
         // 3.3 run jar
-        job.setJarByClass(this.getClass());
+        // job.setJarByClass(WordCount.class);
+        job.setJar("/Users/donggua/IdeaProjects/bigdata/bigdata-hadoop/target/bigdata-hadoop.jar"); // 本地运行集群测试 - 真TMD奇葩 这个路径
 
         // 3.4 set job
         // input -> map -> reduce -> output
@@ -96,6 +98,10 @@ public class WordCount {
         job.setReducerClass(WordCountReducer.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
+
+        // job.setInputFormatClass(CombineFileInputFormat.class);
+        // CombineFileInputFormat.setMaxInputSplitSize(job, 4194304);
+        // CombineFileInputFormat.setMinInputSplitSize(job, 2097152);
 
         // 3.4.4 output
         Path outputPath = new Path(args[1]);
